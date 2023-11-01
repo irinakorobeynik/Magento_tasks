@@ -4,7 +4,7 @@ import com.coherent.aqa.java.training.web.korobeynik.utilities.base.BasePage;
 import org.openqa.selenium.By;
 
 public class LogoutPage extends BasePage {
-    private By signOutText = By.xpath("//span[contains(text(), 'You are signed out')]");
+    By signOutText = By.xpath("//span[contains(text(), 'You are signed out')]");
 
     public LogoutPage() {
         super();
@@ -15,7 +15,7 @@ public class LogoutPage extends BasePage {
         return driver.findElement(signOutText).isDisplayed();
     }
 
-    public String getLogOutPage(){
+    public String getLogOutPage() {
         return driver.getCurrentUrl();
     }
 }

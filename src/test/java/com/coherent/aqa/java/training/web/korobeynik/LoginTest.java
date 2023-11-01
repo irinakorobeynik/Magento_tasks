@@ -12,13 +12,15 @@ import static com.coherent.aqa.java.training.web.korobeynik.utilities.utils.Cons
 
 public class LoginTest extends BaseTest {
     private LoginPage loginPage;
-   private PostLoginPage postLoginPage;
+    private PostLoginPage postLoginPage;
+
     @BeforeClass
     public void openHomePage() {
         loginPage = homePage.navigateToLoginPage();
     }
+
     @Test
-    public void loginTest(){
+    public void loginTest() {
         loginPage.enterUsername(MAGENTO_USERNAME);
         loginPage.enterPassword(MAGENTO_PASSWORD);
         postLoginPage = loginPage.loginToApp();
@@ -27,7 +29,7 @@ public class LoginTest extends BaseTest {
 
     @AfterClass
     public void tearDown() {
-       closeBrowser();
+        closeBrowser();
     }
 }
 
