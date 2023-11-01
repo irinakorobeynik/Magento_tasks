@@ -2,9 +2,13 @@ package com.coherent.aqa.java.training.web.korobeynik.utilities.page;
 
 import com.coherent.aqa.java.training.web.korobeynik.utilities.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LogoutPage extends BasePage {
-    private By signOutText = By.xpath("//span[contains(text(), 'You are signed out')]");
+
+    @FindBy(xpath = "//span[contains(text(), 'You are signed out')]")
+    WebElement signOutText;
 
     public LogoutPage() {
         super();
@@ -12,10 +16,10 @@ public class LogoutPage extends BasePage {
 
     public boolean isSignOutTextDisplayed() {
         wait.waitForElementDisplayed(signOutText, 3);
-        return driver.findElement(signOutText).isDisplayed();
+        return signOutText.isDisplayed();
     }
 
-    public String getLogOutPage(){
+    public String getLogOutPage() {
         return driver.getCurrentUrl();
     }
 }

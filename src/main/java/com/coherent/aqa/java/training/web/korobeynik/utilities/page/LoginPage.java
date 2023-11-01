@@ -2,27 +2,35 @@ package com.coherent.aqa.java.training.web.korobeynik.utilities.page;
 
 import com.coherent.aqa.java.training.web.korobeynik.utilities.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    private By inputUsername =By.name("login[username]");
-    private By inputPassword =By.name("login[password]");
-    private By submitButton =By.cssSelector("button[class ='action login primary']");
 
-    public LoginPage(){
+    @FindBy(name = "login[username]")
+    WebElement inputUsername;
+
+    @FindBy(name = "login[password]")
+    WebElement inputPassword;
+
+    @FindBy(css = "button[class ='action login primary']")
+    WebElement submitButton;
+
+    public LoginPage() {
         super();
     }
 
-    public void enterUsername (String userName){
+    public void enterUsername(String userName) {
         wait.waitForElementDisplayed(inputUsername, 5);
-        driver.findElement(inputUsername).sendKeys(userName);
+        inputUsername.sendKeys(userName);
     }
 
-    public void enterPassword(String password){
-        driver.findElement(inputPassword).sendKeys(password);
+    public void enterPassword(String password) {
+        inputPassword.sendKeys(password);
     }
 
-    public PostLoginPage loginToApp(){
-        driver.findElement(submitButton).click();
+    public PostLoginPage loginToApp() {
+        submitButton.click();
         return new PostLoginPage();
     }
 
