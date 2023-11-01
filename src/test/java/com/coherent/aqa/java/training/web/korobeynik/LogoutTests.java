@@ -36,6 +36,6 @@ public class LogoutTests extends BaseTest {
 
     @AfterClass
     public void tearDown() {
-        quit();
+        closeBrowser();
     }
 }

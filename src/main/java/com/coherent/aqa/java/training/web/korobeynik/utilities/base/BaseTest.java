@@ -18,7 +18,7 @@ public class BaseTest {
     }
 
     @AfterClass
-    public static void quit() {
+    public static void closeBrowser() {
         Driver.tearDown();
     }
 }

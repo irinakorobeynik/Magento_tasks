@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
 
     @AfterClass
     public void tearDown() {
-       quit();
+       closeBrowser();
     }
 }
 
