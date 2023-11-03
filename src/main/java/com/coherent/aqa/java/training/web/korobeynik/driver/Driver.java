@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public final class Driver {
-    public static volatile WebDriver driver;
+    private static volatile WebDriver driver;
 
     private Driver() {
         driver.manage().window().maximize();

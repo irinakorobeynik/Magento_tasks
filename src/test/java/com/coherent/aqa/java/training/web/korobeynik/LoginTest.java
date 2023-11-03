@@ -1,6 +1,5 @@
 package com.coherent.aqa.java.training.web.korobeynik;
 
-import com.coherent.aqa.java.training.web.korobeynik.base.BaseTest;
 import com.coherent.aqa.java.training.web.korobeynik.page.LoginPage;
 import com.coherent.aqa.java.training.web.korobeynik.page.PostLoginPage;
 import org.testng.Assert;
@@ -24,9 +23,5 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(postLoginPage.isGreetingDisplayed(), "Logging in failed");
     }
 
-    @AfterMethod
-    public void tearDown() {
-       closeBrowser();
-    }
 }
 

@@ -1,4 +1,4 @@
-package com.coherent.aqa.java.training.web.korobeynik.base;
+package com.coherent.aqa.java.training.web.korobeynik;
 
 import com.coherent.aqa.java.training.web.korobeynik.driver.Driver;
 import com.coherent.aqa.java.training.web.korobeynik.page.HomePage;
@@ -22,8 +22,8 @@ public class BaseTest {
     public void openBrowser() {
         driver =Driver.getDriver();
         driver.get(MAGENTO_URL);
-        wait = new WaiterUtils(driver);
-        homePage = new HomePage(driver,wait);
+        wait = WaiterUtils.getInstance(driver);
+        homePage = new HomePage(driver);
 
     }
 

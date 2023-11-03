@@ -1,7 +1,5 @@
 package com.coherent.aqa.java.training.web.korobeynik.page;
 
-import com.coherent.aqa.java.training.web.korobeynik.base.BasePage;
-import com.coherent.aqa.java.training.web.korobeynik.page.LogoutPage;
 import com.coherent.aqa.java.training.web.korobeynik.waiter.WaiterUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,16 +10,16 @@ import java.time.Duration;
 public class PostLoginPage extends BasePage {
 
     @FindBy(css = ".page-header .header li[class='greet welcome']")
-    WebElement greetingElement;
+    private WebElement greetingElement;
 
     @FindBy(css = ".page-header button[class='action switch']")
-    WebElement menuArrow;
+    private WebElement menuArrow;
 
     @FindBy(xpath = "//header//a[contains(text(),'Sign Out')]")
-    WebElement logoutButton;
+    private WebElement logoutButton;
 
-    public PostLoginPage(WebDriver driver, WaiterUtils wait) {
-        super(driver,wait);
+    public PostLoginPage(WebDriver driver) {
+        super(driver);
     }
 
     public boolean isGreetingDisplayed() {
@@ -35,6 +33,6 @@ public class PostLoginPage extends BasePage {
 
     public LogoutPage logout() {
         logoutButton.click();
-        return new LogoutPage(driver,wait);
+        return new LogoutPage(driver);
     }
 }
