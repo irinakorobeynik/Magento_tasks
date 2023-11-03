@@ -1,6 +1,5 @@
 package com.coherent.aqa.java.training.web.korobeynik.page;
 
-import com.coherent.aqa.java.training.web.korobeynik.base.BasePage;
 import com.coherent.aqa.java.training.web.korobeynik.waiter.WaiterUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,12 +7,12 @@ import org.openqa.selenium.WebDriver;
 import java.time.Duration;
 
 public class LoginPage extends BasePage {
-    By inputUsername = By.name("login[username]");
-    By inputPassword = By.name("login[password]");
-    By submitButton = By.cssSelector(" .action.login.primary");
+    private By inputUsername = By.name("login[username]");
+    private By inputPassword = By.name("login[password]");
+    private By submitButton = By.cssSelector(" .action.login.primary");
 
-    public LoginPage(WebDriver driver, WaiterUtils wait) {
-        super(driver,wait);
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
 
     public void enterUsername(String userName) {
@@ -27,7 +26,7 @@ public class LoginPage extends BasePage {
 
     public PostLoginPage loginToApp() {
         driver.findElement(submitButton).click();
-        return new PostLoginPage(driver,wait);
+        return new PostLoginPage(driver);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.coherent.aqa.java.training.web.korobeynik;
 
 
-import com.coherent.aqa.java.training.web.korobeynik.base.BaseTest;
 import com.coherent.aqa.java.training.web.korobeynik.page.LoginPage;
 import com.coherent.aqa.java.training.web.korobeynik.page.LogoutPage;
 import com.coherent.aqa.java.training.web.korobeynik.page.PostLoginPage;
@@ -32,8 +31,4 @@ public class LogoutTests extends BaseTest {
 
     }
 
-    @AfterMethod
-    public void tearDown() {
-        closeBrowser();
-    }
 }

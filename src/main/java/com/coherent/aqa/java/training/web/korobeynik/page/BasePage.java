@@ -1,4 +1,4 @@
-package com.coherent.aqa.java.training.web.korobeynik.base;
+package com.coherent.aqa.java.training.web.korobeynik.page;
 
 import com.coherent.aqa.java.training.web.korobeynik.waiter.WaiterUtils;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +11,11 @@ public class BasePage {
     public BasePage(WebDriver driver, WaiterUtils wait) {
         this.driver = driver;
         this.wait = wait;
+    }
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = WaiterUtils.getInstance(driver);
     }
 
     protected boolean isDisplayed(WebElement keyElement) {

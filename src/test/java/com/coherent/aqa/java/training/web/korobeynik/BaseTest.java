@@ -1,4 +1,4 @@
-package com.coherent.aqa.java.training.web.korobeynik.base;
+package com.coherent.aqa.java.training.web.korobeynik;
 
 import com.coherent.aqa.java.training.web.korobeynik.page.HomePage;
 import com.coherent.aqa.java.training.web.korobeynik.driver.Driver;
@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
-    protected  WebDriver driver;
+    protected WebDriver driver;
     protected WaiterUtils wait;
     protected HomePage homePage;
 
@@ -18,8 +18,8 @@ public class BaseTest {
     public void openBrowser() {
         driver = Driver.getInstance();
         driver.get(Constants.MAGENTO_URL);
-        wait = new WaiterUtils(driver);
-        homePage = new HomePage(driver,wait);
+        wait = WaiterUtils.getInstance(driver);
+        homePage = new HomePage(driver);
     }
 
     @AfterMethod

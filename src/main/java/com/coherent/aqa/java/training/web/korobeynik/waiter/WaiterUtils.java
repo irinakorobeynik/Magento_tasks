@@ -9,10 +9,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WaiterUtils {
+    private static volatile WaiterUtils wait;
+
     private WebDriver driver;
-    public WaiterUtils(WebDriver driver) {
+
+    private WaiterUtils(WebDriver driver) {
         this.driver = driver;
     }
+
+    public synchronized static WaiterUtils getInstance(WebDriver driver) {
+        if (wait == null) {
+            wait = new WaiterUtils(driver);
+        }
+        return wait;
+    }
+
     public void waitForElementDisplayed(By element, Duration duration) {
         new WebDriverWait(driver, duration).until(ExpectedConditions.visibilityOfElementLocated(element));
     }
