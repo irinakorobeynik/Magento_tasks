@@ -1,4 +1,4 @@
-package com.coherent.aqa.java.training.web.korobeynik.utilities.waiter;
+package com.coherent.aqa.java.training.web.korobeynik.waiter;
 
 
 import org.openqa.selenium.By;
@@ -13,7 +13,7 @@ public class WaiterUtils {
     public WaiterUtils(WebDriver driver) {
         this.driver = driver;
     }
-    public void waitForElementDisplayed(By element, int sec) {
-        new WebDriverWait(driver, Duration.ofSeconds(sec)).until(ExpectedConditions.visibilityOfElementLocated(element));
+    public void waitForElementDisplayed(By element, Duration duration) {
+        new WebDriverWait(driver, duration).until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 }

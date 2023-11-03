@@ -1,4 +1,4 @@
-package com.coherent.aqa.java.training.web.korobeynik.utilities.utils;
+package com.coherent.aqa.java.training.web.korobeynik.utilities;
 
 import java.io.IOException;
 import java.io.InputStream;

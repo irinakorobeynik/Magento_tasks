@@ -1,23 +1,21 @@
 package com.coherent.aqa.java.training.web.korobeynik;
 
 
-import com.coherent.aqa.java.training.web.korobeynik.utilities.base.BaseTest;
-import com.coherent.aqa.java.training.web.korobeynik.utilities.page.LoginPage;
-import com.coherent.aqa.java.training.web.korobeynik.utilities.page.LogoutPage;
-import com.coherent.aqa.java.training.web.korobeynik.utilities.page.PostLoginPage;
+import com.coherent.aqa.java.training.web.korobeynik.base.BaseTest;
+import com.coherent.aqa.java.training.web.korobeynik.page.LoginPage;
+import com.coherent.aqa.java.training.web.korobeynik.page.LogoutPage;
+import com.coherent.aqa.java.training.web.korobeynik.page.PostLoginPage;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.utils.Constants.*;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
 public class LogoutTests extends BaseTest {
     private LoginPage loginPage;
     private PostLoginPage postLoginPage;
     private LogoutPage logoutPage;
 
-    @BeforeClass
+    @BeforeMethod
     public void openHomePage() {
         loginPage = homePage.navigateToLoginPage();
         loginPage.enterUsername(MAGENTO_USERNAME);
@@ -34,7 +32,7 @@ public class LogoutTests extends BaseTest {
 
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         closeBrowser();
     }
