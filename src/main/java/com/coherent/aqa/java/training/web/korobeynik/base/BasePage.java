@@ -1,19 +1,19 @@
-package com.coherent.aqa.java.training.web.korobeynik.utilities.base;
+package com.coherent.aqa.java.training.web.korobeynik.base;
 
-import com.coherent.aqa.java.training.web.korobeynik.utilities.waiter.WaiterUtils;
+import com.coherent.aqa.java.training.web.korobeynik.waiter.WaiterUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.driver.Driver.getDriver;
+import static com.coherent.aqa.java.training.web.korobeynik.driver.Driver.getDriver;
 
 public class BasePage {
     protected WebDriver driver;
     protected WaiterUtils wait;
 
-    public BasePage() {
-        this.driver = getDriver();
-        wait = new WaiterUtils(driver);
+    public BasePage(WebDriver driver, WaiterUtils wait) {
+        this.driver =driver;
+        this.wait = wait;
         PageFactory.initElements(driver,this);
     }
 

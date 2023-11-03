@@ -1,19 +1,18 @@
 package com.coherent.aqa.java.training.web.korobeynik;
 
-import com.coherent.aqa.java.training.web.korobeynik.utilities.base.BaseTest;
-import com.coherent.aqa.java.training.web.korobeynik.utilities.page.LoginPage;
-import com.coherent.aqa.java.training.web.korobeynik.utilities.page.PostLoginPage;
+import com.coherent.aqa.java.training.web.korobeynik.base.BaseTest;
+import com.coherent.aqa.java.training.web.korobeynik.page.LoginPage;
+import com.coherent.aqa.java.training.web.korobeynik.page.PostLoginPage;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.utils.Constants.*;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
 public class LoginTest extends BaseTest {
     private LoginPage loginPage;
    private PostLoginPage postLoginPage;
-    @BeforeClass
+
+    @BeforeMethod
     public void openHomePage() {
         loginPage = homePage.navigateToLoginPage();
     }
@@ -25,7 +24,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(postLoginPage.isGreetingDisplayed(), "Logging in failed");
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
        closeBrowser();
     }

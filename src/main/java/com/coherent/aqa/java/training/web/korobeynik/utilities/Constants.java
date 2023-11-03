@@ -1,7 +1,5 @@
-package com.coherent.aqa.java.training.web.korobeynik.utilities.utils;
+package com.coherent.aqa.java.training.web.korobeynik.utilities;
 
-
-import com.coherent.aqa.java.training.web.korobeynik.utilities.utils.CommonUtils;
 
 public class Constants {
     public static final String MAGENTO_URL = CommonUtils.getPropertyValue("magento.url");

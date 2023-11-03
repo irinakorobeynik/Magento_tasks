@@ -1,4 +1,4 @@
-package com.coherent.aqa.java.training.web.korobeynik.utilities.waiter;
+package com.coherent.aqa.java.training.web.korobeynik.waiter;
 
 
 
@@ -13,7 +13,7 @@ public class WaiterUtils {
     public WaiterUtils(WebDriver driver) {
         this.driver = driver;
     }
-    public void waitForElementDisplayed(WebElement element, int sec) {
-        new WebDriverWait(driver, Duration.ofSeconds(sec)).until(d -> element.isDisplayed());
+    public void waitForElementDisplayed(WebElement element, Duration duration) {
+        new WebDriverWait(driver, duration).until(d -> element.isDisplayed());
     }
 }
