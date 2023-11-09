@@ -20,6 +20,7 @@ public class LoginTest extends BaseTest {
         loginPage.enterUsername(MAGENTO_USERNAME);
         loginPage.enterPassword(MAGENTO_PASSWORD);
         postLoginPage = loginPage.loginToApp();
+        postLoginPage.makeScreenShot();
         Assert.assertTrue(postLoginPage.isGreetingDisplayed(), "Logging in failed");
     }
 
