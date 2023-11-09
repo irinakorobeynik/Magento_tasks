@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.time.Duration;
 
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.SCREENSHOT_PATH;
+
 public class PostLoginPage extends BasePage {
 
     @FindBy(css = ".page-header .header li[class='greet welcome']")
@@ -20,6 +22,10 @@ public class PostLoginPage extends BasePage {
 
     public PostLoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void makeScreenShot(){
+        screenShot.takeSnapShot(driver, SCREENSHOT_PATH);
     }
 
     public boolean isGreetingDisplayed() {
