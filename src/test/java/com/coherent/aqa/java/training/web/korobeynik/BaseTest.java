@@ -2,27 +2,35 @@ package com.coherent.aqa.java.training.web.korobeynik;
 
 import com.coherent.aqa.java.training.web.korobeynik.driver.Driver;
 import com.coherent.aqa.java.training.web.korobeynik.page.HomePage;
+import com.coherent.aqa.java.training.web.korobeynik.screenshot.ScreenShot;
+import com.coherent.aqa.java.training.web.korobeynik.utilities.CommonUtils;
 import com.coherent.aqa.java.training.web.korobeynik.waiter.WaiterUtils;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.MAGENTO_URL;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
 public class BaseTest {
     protected WebDriver driver;
     protected WaiterUtils wait;
-
+    protected ScreenShot screenShot;
     protected HomePage homePage;
 
     @BeforeMethod
     public void openBrowser() {
-        driver =Driver.getDriver();
+        driver = Driver.getDriver();
         driver.get(MAGENTO_URL);
         wait = WaiterUtils.getInstance(driver);
+        screenShot = ScreenShot.getInstance(driver);
         homePage = new HomePage(driver);
 
     }
@@ -31,4 +39,16 @@ public class BaseTest {
     public void closeBrowser() {
         Driver.tearDown();
     }
+
+    @DataProvider(name = "credentialsDataProvider")
+    public static Object[][] credentialsDataProvider() {
+        return new Object[][]{
+                {MAGENTO_USERNAME, MAGENTO_PASSWORD},
+                {MAGENTO_USERNAME_INCORRECT, MAGENTO_PASSWORD_INCORRECT}
+        };
+    }
+
 }
+
+
+

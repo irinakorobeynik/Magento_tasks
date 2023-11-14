@@ -4,11 +4,15 @@ package com.coherent.aqa.java.training.web.korobeynik;
 import com.coherent.aqa.java.training.web.korobeynik.page.LoginPage;
 import com.coherent.aqa.java.training.web.korobeynik.page.LogoutPage;
 import com.coherent.aqa.java.training.web.korobeynik.page.PostLoginPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
-
+@Listeners(TestListener.class)
+@Feature("Login functionality")
 public class LogoutTests extends BaseTest {
     private LoginPage loginPage;
     private PostLoginPage postLoginPage;
@@ -23,6 +27,8 @@ public class LogoutTests extends BaseTest {
     }
 
     @Test
+    @TmsLink("112")
+    @Description("Logout test")
     public void logoutTest() {
         postLoginPage.openMenu();
         logoutPage = postLoginPage.logout();

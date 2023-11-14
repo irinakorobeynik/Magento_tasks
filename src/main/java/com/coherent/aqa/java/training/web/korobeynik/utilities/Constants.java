@@ -5,6 +5,8 @@ public class Constants {
     public static final String MAGENTO_URL = CommonUtils.getPropertyValue("magento.url");
     public static final String MAGENTO_USERNAME = CommonUtils.getPropertyValue("user.magento.username");
     public static final String MAGENTO_PASSWORD = CommonUtils.getPropertyValue("user.magento.password");
+    public static final String MAGENTO_USERNAME_INCORRECT = CommonUtils.getPropertyValue("user.magento.username.incorrect");
+    public static final String MAGENTO_PASSWORD_INCORRECT = CommonUtils.getPropertyValue("user.magento.password.incorrect");
     public static final String SIGN_OUT_LINK = CommonUtils.getPropertyValue("magento.logout");
     public static final String SCREENSHOT_PATH = CommonUtils.getPropertyValue("path.for.screenshots");
 }
