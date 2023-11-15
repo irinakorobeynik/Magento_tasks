@@ -24,15 +24,7 @@ public class PostLoginPage extends BasePage {
     }
 
     public boolean isGreetingDisplayed() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        boolean isDisplayed;
-        try {
-            isDisplayed = greetingElement.isDisplayed();
-        } catch (NoSuchElementException ex) {
-            ex.printStackTrace();
-            isDisplayed = false;
-        }
-        return isDisplayed;
+         return isDisplayed(greetingElement);
     }
 
     public void openMenu() {
