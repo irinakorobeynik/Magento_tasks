@@ -28,8 +28,8 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    protected boolean isDisplayed(WebElement keyElement) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    protected boolean isDisplayed(WebElement keyElement, Duration duration) {
+        driver.manage().timeouts().implicitlyWait(duration);
         boolean isDisplayed;
         try {
             isDisplayed = keyElement.isDisplayed();

@@ -24,7 +24,7 @@ public class PostLoginPage extends BasePage {
     }
 
     public boolean isGreetingDisplayed() {
-         return isDisplayed(greetingElement);
+         return isDisplayed(greetingElement, Duration.ofSeconds(3));
     }
 
     public void openMenu() {
