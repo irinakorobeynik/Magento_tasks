@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="all suite">
+    <listeners>
+        <listener class-name="com.coherent.aqa.java.training.web.korobeynik.TestListener"></listener>
+    </listeners>
+    <test name="all-test">
+        <classes>
+            <class name="com.coherent.aqa.java.training.web.korobeynik.LoginTest"/>
+            <class name="com.coherent.aqa.java.training.web.korobeynik.LogoutTests"/>
+        </classes>
+    </test>
+</suite>
