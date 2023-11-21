@@ -3,31 +3,22 @@ package com.coherent.aqa.java.training.web.korobeynik;
 import com.coherent.aqa.java.training.web.korobeynik.driver.Driver;
 import com.coherent.aqa.java.training.web.korobeynik.page.HomePage;
 import com.coherent.aqa.java.training.web.korobeynik.screenshot.ScreenShot;
-import com.coherent.aqa.java.training.web.korobeynik.utilities.CommonUtils;
 import com.coherent.aqa.java.training.web.korobeynik.waiter.WaiterUtils;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
 public class BaseTest {
+
     protected WebDriver driver;
     protected WaiterUtils wait;
     protected ScreenShot screenShot;
     protected HomePage homePage;
 
     @BeforeMethod
-    public void openBrowser() {
-        driver = Driver.getDriver();
+    public void openBrowser()  {
+        driver = Driver.getDriver().openRemoteDriver();
         driver.get(MAGENTO_URL);
         wait = WaiterUtils.getInstance(driver);
         screenShot = ScreenShot.getInstance(driver);

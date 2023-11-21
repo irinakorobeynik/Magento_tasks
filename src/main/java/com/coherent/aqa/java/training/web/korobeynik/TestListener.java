@@ -18,12 +18,12 @@ public class TestListener implements ITestListener {
 
     @Attachment(value = "Page Screenshot", type = "image/png")
     private byte[] takeScreenshot() {
-        return ScreenShot.takeSnapShot(Driver.getDriver());
+        return ScreenShot.takeSnapShot(Driver.getDriver().openRemoteDriver());
     }
 
     @Attachment(value = "Browser/System Info", type = "text/plain")
     private String getSystemInfo() {
-        Capabilities cap = ((RemoteWebDriver) Driver.getDriver()).getCapabilities();
+        Capabilities cap = ((RemoteWebDriver) Driver.getDriver().openRemoteDriver()).getCapabilities();
         String browserName = cap.getBrowserName();
         String browserVersion = (String) cap.getCapability("browserVersion");
         return browserName + " " + browserVersion;
