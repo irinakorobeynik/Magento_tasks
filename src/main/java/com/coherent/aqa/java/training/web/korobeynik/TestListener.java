@@ -3,10 +3,13 @@ package com.coherent.aqa.java.training.web.korobeynik;
 import com.coherent.aqa.java.training.web.korobeynik.driver.Driver;
 import com.coherent.aqa.java.training.web.korobeynik.screenshot.ScreenShot;
 import io.qameta.allure.Attachment;
+import lombok.SneakyThrows;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.BROWSER_NAME;
 
 public class TestListener implements ITestListener {
 
@@ -16,11 +19,13 @@ public class TestListener implements ITestListener {
         getSystemInfo();
     }
 
+    @SneakyThrows
     @Attachment(value = "Page Screenshot", type = "image/png")
     private byte[] takeScreenshot() {
         return ScreenShot.takeSnapShot(Driver.getDriver().openRemoteDriver());
     }
 
+    @SneakyThrows
     @Attachment(value = "Browser/System Info", type = "text/plain")
     private String getSystemInfo() {
         Capabilities cap = ((RemoteWebDriver) Driver.getDriver().openRemoteDriver()).getCapabilities();

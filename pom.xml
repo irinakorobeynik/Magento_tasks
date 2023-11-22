@@ -12,7 +12,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.19</aspectj.version>
-        <selenium-version>4.14.1</selenium-version>
+        <selenium-version>4.13.0</selenium-version>
         <testng-version>7.4.0</testng-version>
         <allure-testng-version>2.13.9</allure-testng-version>
         <log4j-version>2.19.0</log4j-version>
@@ -62,6 +62,11 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
+            <version>${selenium-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-http-jdk-client</artifactId>
             <version>${selenium-version}</version>
         </dependency>
         <dependency>

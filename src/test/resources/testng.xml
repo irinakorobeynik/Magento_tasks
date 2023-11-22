@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="all suite">
     <listeners>
-        <listener class-name="com.coherent.aqa.java.training.web.korobeynik.TestListener"></listener>
+        <listener class-name="com.coherent.aqa.java.training.web.korobeynik.TestListener"/>
     </listeners>
     <test name="all-test">
         <classes>

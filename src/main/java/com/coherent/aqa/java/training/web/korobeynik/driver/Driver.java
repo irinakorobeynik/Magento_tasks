@@ -1,19 +1,26 @@
 package com.coherent.aqa.java.training.web.korobeynik.driver;
 
-import com.coherent.aqa.java.training.web.korobeynik.utilities.Constants;
+
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.http.ClientConfig;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.BROWSER_NAME;
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.REMOTE_URL;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
 public final class Driver {
     private static WebDriver webDriver;
@@ -29,24 +36,18 @@ public final class Driver {
         return driver;
     }
 
-    public WebDriver openRemoteDriver() {
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setBrowserName(BROWSER_NAME);
-        try {
-            webDriver = new RemoteWebDriver(new URL(REMOTE_URL), dc);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-        return webDriver;
-    }
 
-    public WebDriver openLocalDriver(String driverOption) {
-        switch (driverOption) {
-            case "chrome" -> webDriver = new ChromeDriver();
-            case "firefox" -> webDriver = new FirefoxDriver();
-            case "edge" -> webDriver = new EdgeDriver();
-            case "safari" -> webDriver = new SafariDriver();
-            default -> webDriver = new ChromeDriver();
+    public WebDriver openRemoteDriver() throws MalformedURLException {
+        ClientConfig config = ClientConfig.defaultConfig().connectionTimeout(Duration.ofMinutes(1))
+                .readTimeout(Duration.ofMinutes(1));
+        switch (BROWSER_NAME) {
+            case "chrome" -> webDriver = RemoteWebDriver.builder().oneOf(setChromeOptions()).setCapability("sauce:options", auth())
+                    .address(REMOTE_URL).config(config).build();
+            case "firefox" -> webDriver = RemoteWebDriver.builder().oneOf(setFireFoxOptions()).setCapability("sauce:options", auth())
+                    .address(REMOTE_URL).config(config).build();
+            case "edge" -> webDriver = RemoteWebDriver.builder().oneOf(setEdgeOptions()).setCapability("sauce:options", auth())
+                    .address(REMOTE_URL).config(config).build();
+            default -> throw new IllegalArgumentException("Invalid browser name" + BROWSER_NAME);
         }
         return webDriver;
     }
@@ -56,5 +57,49 @@ public final class Driver {
             webDriver.quit();
             webDriver = null;
         }
+    }
+
+    private Map<String, Object> auth() {
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("username", SAUCE_USERNAME);
+        sauceOptions.put("accessKey", SAUCE_ACCESS_KEY);
+        sauceOptions.put("build", 2);
+        sauceOptions.put("name", BROWSER_NAME + BROWSER_VERSION + SAUCE_PLATFORM);
+        return sauceOptions;
+    }
+
+    private ChromeOptions setChromeOptions() {
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setCapability("unhandledPromptBehavior", "dismiss");
+        browserOptions.setPlatformName(SAUCE_PLATFORM);
+        browserOptions.setBrowserVersion(BROWSER_VERSION);
+        return browserOptions;
+    }
+
+    private FirefoxOptions setFireFoxOptions() {
+        FirefoxOptions browserOptions = new FirefoxOptions();
+        browserOptions.setCapability("unhandledPromptBehavior", "dismiss");
+        browserOptions.setPlatformName(SAUCE_PLATFORM);
+        browserOptions.setBrowserVersion(BROWSER_VERSION);
+        return browserOptions;
+    }
+
+    private EdgeOptions setEdgeOptions() {
+        EdgeOptions browserOptions = new EdgeOptions();
+        browserOptions.setCapability("unhandledPromptBehavior", "dismiss");
+        browserOptions.setPlatformName(SAUCE_PLATFORM);
+        browserOptions.setBrowserVersion(BROWSER_VERSION);
+        return browserOptions;
+    }
+
+    public WebDriver openLocalDriver() {
+        switch (BROWSER_NAME) {
+            case "chrome" -> webDriver = new ChromeDriver();
+            case "firefox" -> webDriver = new FirefoxDriver();
+            case "edge" -> webDriver = new EdgeDriver();
+            case "safari" -> webDriver = new SafariDriver();
+            default -> webDriver = new ChromeDriver();
+        }
+        return webDriver;
     }
 }
