@@ -11,22 +11,26 @@ import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.MAGENTO_PASSWORD;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.MAGENTO_USERNAME;
+
 @Listeners(TestListener.class)
 @Feature("Login functionality")
 public class LoginTest extends BaseTest {
     private LoginPage loginPage;
-   private PostLoginPage postLoginPage;
+    private PostLoginPage postLoginPage;
 
     @BeforeMethod
     public void openHomePage() {
         loginPage = homePage.navigateToLoginPage();
     }
-    @Test(dataProvider = "credentialsDataProvider", dataProviderClass = BaseTest.class)
+
+    @Test
     @TmsLink("111")
     @Description("Login test with several credentials")
-    public void loginTest(String username, String password){
-        loginPage.enterUsername(username);
-        loginPage.enterPassword(password);
+    public void loginTest() {
+        loginPage.enterUsername(MAGENTO_USERNAME);
+        loginPage.enterPassword(MAGENTO_PASSWORD);
         postLoginPage = loginPage.loginToApp();
         Assert.assertTrue(postLoginPage.isGreetingDisplayed(), "Logging in failed");
     }

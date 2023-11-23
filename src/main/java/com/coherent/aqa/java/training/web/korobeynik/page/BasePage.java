@@ -40,4 +40,8 @@ public class BasePage {
         return isDisplayed;
 
     }
+
+    public boolean doesElementContainsText(WebElement element,String text){
+        return element.getText().contains(text);
+    }
 }

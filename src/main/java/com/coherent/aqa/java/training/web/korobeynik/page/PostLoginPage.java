@@ -19,6 +19,9 @@ public class PostLoginPage extends BasePage {
     @FindBy(xpath = "//header//a[contains(text(),'Sign Out')]")
     private WebElement logoutButton;
 
+    @FindBy(xpath = "//header//a[contains(text(),'My Account')]")
+    private WebElement myAccountButton;
+
     public PostLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -34,5 +37,9 @@ public class PostLoginPage extends BasePage {
     public LogoutPage logout() {
         logoutButton.click();
         return new LogoutPage(driver);
+    }
+    public AccountPage openAccountPage(){
+        myAccountButton.click();
+        return new AccountPage(driver);
     }
 }

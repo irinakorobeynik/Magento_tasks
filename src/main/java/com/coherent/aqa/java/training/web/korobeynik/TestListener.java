@@ -22,13 +22,13 @@ public class TestListener implements ITestListener {
     @SneakyThrows
     @Attachment(value = "Page Screenshot", type = "image/png")
     private byte[] takeScreenshot() {
-        return ScreenShot.takeSnapShot(Driver.getDriver().openRemoteDriver());
+        return ScreenShot.takeSnapShot(Driver.getDriver().openLocalDriver());
     }
 
     @SneakyThrows
     @Attachment(value = "Browser/System Info", type = "text/plain")
     private String getSystemInfo() {
-        Capabilities cap = ((RemoteWebDriver) Driver.getDriver().openRemoteDriver()).getCapabilities();
+        Capabilities cap = ((RemoteWebDriver) Driver.getDriver().openLocalDriver()).getCapabilities();
         String browserName = cap.getBrowserName();
         String browserVersion = (String) cap.getCapability("browserVersion");
         return browserName + " " + browserVersion;

@@ -22,7 +22,7 @@ public class BaseTest {
     @SneakyThrows
     @BeforeMethod
     public void openBrowser()  {
-        driver = Driver.getDriver().openRemoteDriver();
+        driver = Driver.getDriver().openLocalDriver();
         driver.get(MAGENTO_URL);
         wait = WaiterUtils.getInstance(driver);
         screenShot = ScreenShot.getInstance(driver);
@@ -32,15 +32,7 @@ public class BaseTest {
 
     @AfterMethod
     public void closeBrowser() {
-        Driver.tearDown();
-    }
-
-    @DataProvider(name = "credentialsDataProvider")
-    public static Object[][] credentialsDataProvider() {
-        return new Object[][]{
-                {MAGENTO_USERNAME, MAGENTO_PASSWORD},
-                {MAGENTO_USERNAME_INCORRECT, MAGENTO_PASSWORD_INCORRECT}
-        };
+       // Driver.tearDown();
     }
 
 }
