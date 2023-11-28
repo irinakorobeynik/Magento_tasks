@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.time.Duration;
 
+import static java.time.Duration.ofSeconds;
+
 
 public class PostLoginPage extends BasePage {
 
@@ -21,6 +23,10 @@ public class PostLoginPage extends BasePage {
 
     @FindBy(xpath = "//header//a[contains(text(),'My Account')]")
     private WebElement myAccountButton;
+
+    @FindBy(xpath = "//span[contains(text(),'Shop New Yoga')]")
+    private WebElement whatsNewLink;
+
 
     public PostLoginPage(WebDriver driver) {
         super(driver);
@@ -42,4 +48,12 @@ public class PostLoginPage extends BasePage {
         myAccountButton.click();
         return new AccountPage(driver);
     }
+
+    public NewGoodsPage openNewGoodsPage(){
+        whatsNewLink.click();
+        return new NewGoodsPage(driver);
+
+    }
+
+
 }

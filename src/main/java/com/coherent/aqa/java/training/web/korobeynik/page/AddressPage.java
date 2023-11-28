@@ -3,7 +3,9 @@ package com.coherent.aqa.java.training.web.korobeynik.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
@@ -68,11 +70,9 @@ public class AddressPage extends BasePage {
 
     public void selectCountry(String country) {
         Select select = new Select(countryInput);
+        List <WebElement> countryOptions =select.getAllSelectedOptions();
         if (country.equals("any")) {
-            List<WebElement> options = countryInput.findElements(By.xpath(".//option"))
-                    .stream()
-                    .toList();
-            select.selectByIndex(new Random().nextInt((options.size() - 1) + 1) + 1);
+            select.selectByIndex(new Random().nextInt(countryOptions.size() + 1));
 
         } else {
             select.selectByVisibleText(country);
@@ -97,12 +97,12 @@ public class AddressPage extends BasePage {
 
     }
 
-    public boolean isBillingAddressDisplayed(){
-        return isDisplayed(address,Duration.ofSeconds(3));
+    public boolean isBillingAddressDisplayed() {
+        return isDisplayed(address, Duration.ofSeconds(3));
     }
 
-    public boolean doesAddressContains(String text){
-        return doesElementContainsText(address,text);
+    public boolean doesAddressContains(String text) {
+        return doesElementContainsText(address, text);
     }
 
 

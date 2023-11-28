@@ -41,6 +41,5 @@ public class AddingAddressTest extends BaseTest{
         asert.assertTrue(addressPage.isBillingAddressDisplayed(), "Address is not displayed");
         asert.assertTrue(addressPage.doesAddressContains("123"), "Address is wrong");
         asert.assertAll("Something went wrong with Address adding");
-
     }
 }

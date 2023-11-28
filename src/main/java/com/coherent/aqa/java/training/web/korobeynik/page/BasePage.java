@@ -5,6 +5,7 @@ import com.coherent.aqa.java.training.web.korobeynik.waiter.WaiterUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
@@ -43,5 +44,15 @@ public class BasePage {
 
     public boolean doesElementContainsText(WebElement element,String text){
         return element.getText().contains(text);
+    }
+    public void hoverOverWebElement(WebElement element){
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
+    }
+
+    public void clickButtonThatDisables(WebElement element){
+        wait.waitForElementClickable(element, Duration.ofSeconds(2));
+        element.click();
+        wait.waitForElementDisabled(element, Duration.ofSeconds(2));
     }
 }
