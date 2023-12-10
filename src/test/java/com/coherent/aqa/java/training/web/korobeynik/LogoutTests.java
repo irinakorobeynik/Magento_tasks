@@ -11,14 +11,14 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
-@Listeners(TestListener.class)
+
 @Feature("Login functionality")
 public class LogoutTests extends BaseTest {
     private LoginPage loginPage;
     private PostLoginPage postLoginPage;
     private LogoutPage logoutPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void openHomePage() {
         loginPage = homePage.navigateToLoginPage();
         loginPage.enterUsername(MAGENTO_USERNAME);
@@ -27,7 +27,7 @@ public class LogoutTests extends BaseTest {
     }
 
     @Test
-    @TmsLink("112")
+    @TmsLink("115")
     @Description("Logout test")
     public void logoutTest() {
         postLoginPage.openMenu();

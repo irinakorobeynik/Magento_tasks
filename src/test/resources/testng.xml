@@ -5,9 +5,8 @@
         <listener class-name="com.coherent.aqa.java.training.web.korobeynik.TestListener"/>
     </listeners>
     <test name="all-test">
-        <classes>
-            <class name="com.coherent.aqa.java.training.web.korobeynik.LoginTest"/>
-            <class name="com.coherent.aqa.java.training.web.korobeynik.LogoutTests"/>
-        </classes>
+        <packages>
+            <package name="com.coherent.aqa.java.training.web.korobeynik"/>
+        </packages>
     </test>
 </suite>

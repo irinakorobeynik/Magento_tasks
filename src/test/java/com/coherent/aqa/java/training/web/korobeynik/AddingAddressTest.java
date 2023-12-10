@@ -2,21 +2,21 @@ package com.coherent.aqa.java.training.web.korobeynik;
 
 import com.coherent.aqa.java.training.web.korobeynik.page.*;
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import io.qameta.allure.TmsLink;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
-public class AddingAddressTest extends BaseTest{
+@Feature("Account details filling in")
+public class AddingAddressTest extends BaseTest {
     private LoginPage loginPage;
     private PostLoginPage postLoginPage;
     private AccountPage accountPage;
     private AddressPage addressPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void openHomePage() {
         loginPage = homePage.navigateToLoginPage();
         loginPage.enterUsername("KEkWXm@gmail.com");

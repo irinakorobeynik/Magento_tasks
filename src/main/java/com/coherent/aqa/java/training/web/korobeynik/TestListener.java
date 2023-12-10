@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.BROWSER_NAME;
+import static java.lang.String.valueOf;
 
 public class TestListener implements ITestListener {
 
@@ -22,16 +22,17 @@ public class TestListener implements ITestListener {
     @SneakyThrows
     @Attachment(value = "Page Screenshot", type = "image/png")
     private byte[] takeScreenshot() {
-        return ScreenShot.takeSnapShot(Driver.getDriver().openLocalDriver());
+        return ScreenShot.takeSnapShot(Driver.getDriver().openRemoteDriver());
     }
 
     @SneakyThrows
     @Attachment(value = "Browser/System Info", type = "text/plain")
     private String getSystemInfo() {
-        Capabilities cap = ((RemoteWebDriver) Driver.getDriver().openLocalDriver()).getCapabilities();
+        Capabilities cap = ((RemoteWebDriver) Driver.getDriver().openRemoteDriver()).getCapabilities();
         String browserName = cap.getBrowserName();
-        String browserVersion = (String) cap.getCapability("browserVersion");
-        return browserName + " " + browserVersion;
+        String platformName = valueOf(cap.getPlatformName());
+        String browserVersion = valueOf(cap.getCapability("browserVersion"));
+        return browserName + " " + browserVersion + " " + platformName;
     }
 
 }

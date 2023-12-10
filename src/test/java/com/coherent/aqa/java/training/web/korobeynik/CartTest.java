@@ -6,9 +6,10 @@ import com.coherent.aqa.java.training.web.korobeynik.page.CartPage;
 import com.coherent.aqa.java.training.web.korobeynik.page.LoginPage;
 import com.coherent.aqa.java.training.web.korobeynik.page.NewGoodsPage;
 import com.coherent.aqa.java.training.web.korobeynik.page.PostLoginPage;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.TmsLink;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -16,13 +17,14 @@ import java.util.List;
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.MAGENTO_PASSWORD;
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.MAGENTO_USERNAME;
 
-public class CartTest extends BaseTest{
+@Feature("Adding  Goods to cart")
+public class CartTest extends BaseTest {
     private LoginPage loginPage;
     private PostLoginPage postLoginPage;
     private NewGoodsPage newGoodsPage;
     private CartPage cartPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void openHomePage() {
         loginPage = homePage.navigateToLoginPage();
         loginPage.enterUsername(MAGENTO_USERNAME);
@@ -32,19 +34,21 @@ public class CartTest extends BaseTest{
     }
 
     @Test
-    public void getGoodsToTheCart(){
-        List<Goods> goodsList =newGoodsPage.getThreeGoodsToCart();
+    @TmsLink("113")
+    @Description("Adding to Cart")
+    public void getGoodsToTheCart() {
+        List<Goods> goodsList = newGoodsPage.getThreeGoodsToCart();
         cartPage = newGoodsPage.navigateToCart();
         SoftAssert softAssert = new SoftAssert();
         goodsList.forEach(good -> {
             softAssert.assertTrue(cartPage.doesAnyCartItemHaveText(good.getName()), "No matches with goods added to the Cart found");
         });
-        softAssert.assertTrue(cartPage.getTotalFromCart()>= Goods.getTotal(), "Total less than expected");
+        softAssert.assertTrue(cartPage.getTotalFromCart() >= Goods.getTotal(), "Total less than expected");
         softAssert.assertAll("Something goes wrong with Goods adding to the cart");
     }
 
-    @AfterMethod
-    public void deleteAllFromCart(){
+    @AfterClass
+    public void deleteAllFromCart() {
         cartPage.deleteAllGoodsFromCart();
         Driver.tearDown();
     }

@@ -7,11 +7,9 @@ import com.coherent.aqa.java.training.web.korobeynik.waiter.WaiterUtils;
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-
-import java.net.MalformedURLException;
-
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
+@Listeners(TestListener.class)
 public class BaseTest {
 
     protected WebDriver driver;
@@ -20,9 +18,9 @@ public class BaseTest {
     protected HomePage homePage;
 
     @SneakyThrows
-    @BeforeMethod
-    public void openBrowser()  {
-        driver = Driver.getDriver().openLocalDriver();
+    @BeforeClass
+    public void openBrowser() {
+        driver = Driver.getDriver().openRemoteDriver();
         driver.get(MAGENTO_URL);
         wait = WaiterUtils.getInstance(driver);
         screenShot = ScreenShot.getInstance(driver);
@@ -30,9 +28,9 @@ public class BaseTest {
 
     }
 
-    @AfterMethod
+    @AfterClass
     public void closeBrowser() {
-       // Driver.tearDown();
+        Driver.tearDown();
     }
 
 }
