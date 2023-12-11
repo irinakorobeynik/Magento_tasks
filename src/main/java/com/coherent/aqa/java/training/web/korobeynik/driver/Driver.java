@@ -45,8 +45,6 @@ public final class Driver {
                     .address(REMOTE_URL).config(config).build();
             case "firefox" -> webDriver = RemoteWebDriver.builder().oneOf(setFireFoxOptions()).setCapability("sauce:options", auth())
                     .address(REMOTE_URL).config(config).build();
-            case "edge" -> webDriver = RemoteWebDriver.builder().oneOf(setEdgeOptions()).setCapability("sauce:options", auth())
-                    .address(REMOTE_URL).config(config).build();
             default -> throw new IllegalArgumentException("Invalid browser name" + BROWSER_NAME);
         }
         return webDriver;
@@ -84,21 +82,11 @@ public final class Driver {
         return browserOptions;
     }
 
-    private EdgeOptions setEdgeOptions() {
-        EdgeOptions browserOptions = new EdgeOptions();
-        browserOptions.setCapability("unhandledPromptBehavior", "dismiss");
-        browserOptions.setPlatformName(SAUCE_PLATFORM);
-        browserOptions.setBrowserVersion(BROWSER_VERSION);
-        return browserOptions;
-    }
-
     public WebDriver openLocalDriver() {
         switch (BROWSER_NAME) {
             case "chrome" -> webDriver = new ChromeDriver();
             case "firefox" -> webDriver = new FirefoxDriver();
-            case "edge" -> webDriver = new EdgeDriver();
-            case "safari" -> webDriver = new SafariDriver();
-            default -> webDriver = new ChromeDriver();
+            default -> throw new IllegalArgumentException("Invalid browser name" + BROWSER_NAME);
         }
         return webDriver;
     }
